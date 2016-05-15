@@ -13,8 +13,6 @@ Version:           0.0.1
 
 if ( !defined('ABSPATH') ) die();
 
-if ( ! class_exists('Sweet_Widgets_Post_Type') ) :
-
 // initialize plugin on the init action
 add_action( 'init', array( 'Sweet_Widgets_Post_Type', 'register'), 0 );
 
@@ -101,5 +99,3 @@ class Sweet_Widgets_Post_Type {
 		register_post_type( 'sw_widget', $post_type );
 	}
 }
-
-endif; // class exists

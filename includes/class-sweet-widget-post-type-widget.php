@@ -1,7 +1,5 @@
 <?php
 
-if ( ! class_exists('Sweet_Widgets_Post_Type_Widget') ) :
-
 class Sweet_Widget_Post_Type_Widget extends WP_Widget {
 
 	/**
@@ -144,5 +142,3 @@ class Sweet_Widget_Post_Type_Widget extends WP_Widget {
 		) );
 	}
 }
-
-endif;
