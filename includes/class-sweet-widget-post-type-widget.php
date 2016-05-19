@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class Sweet_Widget_Post_Type_Widget
+ */
 class Sweet_Widget_Post_Type_Widget extends WP_Widget {
 
 	/**
@@ -58,8 +61,13 @@ class Sweet_Widget_Post_Type_Widget extends WP_Widget {
 
 		// create a useful title to display in the widget header
 		$title = '-none-';
-		if ( $values['post_id'] ) {
+		$link = null;
+		if ( !empty( $values['post_id'] ) ) {
 			$title = get_the_title( $values['post_id'] );
+
+			if ( get_post_type( $values['post_id'] ) == 'sw_widget' ){
+				$link = admin_url( "post.php?post={$values['post_id']}&action=edit" );
+			}
 
 			$status = get_post_status( $values['post_id'] );
 			if ( $status != 'publish' ) {
@@ -70,6 +78,9 @@ class Sweet_Widget_Post_Type_Widget extends WP_Widget {
 		<div class="sweet-widget-post-type">
 			<input type="hidden" id="<?php echo $this->get_field_id( 'title' ); ?>" value="<?php echo esc_attr( $title ); ?>">
 
+			<?php if ( $link ) : ?>
+				<p><a href="<?php echo esc_url( $link ); ?>">edit widget</a></p>
+			<?php endif; ?>
 			<p>
 				<label for="<?php echo $this->get_field_id( 'post_id' ); ?>">
 					<strong><?php _e( 'Sweet Widget' ); ?></strong>
